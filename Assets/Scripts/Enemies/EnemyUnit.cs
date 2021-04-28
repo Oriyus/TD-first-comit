@@ -30,8 +30,6 @@ namespace TD
                 this.CheckWhichEnemyToRemove();
                 // Drop loot
                 LootManager.Instance.CreateLoot(this.loot, this.transform);
-                // Give gold value
-                GameManager.Instance.Gold =this.goldValue;
                 // Destroy enemy
                 Destroy(gameObject);
             }
