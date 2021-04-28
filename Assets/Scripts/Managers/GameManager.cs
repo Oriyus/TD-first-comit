@@ -4,7 +4,6 @@ namespace TD
 
     public class GameManager : Singleton<GameManager>
     {    
-        private float enemySpeed;
         private float timeTillNextWave;
         private int collectedGold = 0;
         private int collectedReusableParts = 0;
@@ -26,11 +25,6 @@ namespace TD
                 UI.Instance.SetGold = this.collectedGold;
             }
             get { return this.collectedGold; }
-        }
-
-        public float EnemySpeed
-        {
-            get { return this.enemySpeed; }
         }
 
         public float NextWaveTime
@@ -60,12 +54,6 @@ namespace TD
             TimeManager.Instance.UnPauseGame();
         }
 
-        public void CreateEnemy()
-        {
-            this.enemySpeed = LevelDataManager.Instance.WavesSpeeds[TimeManager.Instance.WaveIndex];
-            EnemyManager.Instance.CreateEnemy(TimeManager.Instance.WaveIndex, TimeManager.Instance.EnemyIndex);
-        }
-
         private void SetupLevelData()
         {
             TimeManager.Instance.LaunchTimes = LevelDataManager.Instance.LaunchTimes;
@@ -81,11 +69,6 @@ namespace TD
         private void Awake()
         {
             this.SetupLevelData();
-        }
-
-        private void Start()
-        {
-            TimeManager.Instance.CreateEnemyEvent.AddListener(CreateEnemy);
         }
     }
 }

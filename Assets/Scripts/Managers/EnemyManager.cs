@@ -23,12 +23,18 @@ namespace TD
         public void CreateEnemy(int wave, int enemyIndex)
         {
             GameObject newEnemy = Instantiate(this.waves[wave].waveEnemies[enemyIndex]);
+            newEnemy.GetComponent<EnemyUnit>().speed = LevelDataManager.Instance.WavesSpeeds[wave];
             this.liveEnemies.Add(newEnemy);
         }
 
         public void RemoveLiveEnemy(int index)
         {
             this.liveEnemies.RemoveAt(index);
+        }
+
+        private void Awake()
+        {
+            TimeManager.Instance.OnCreateEnemyEvent += CreateEnemy;
         }
 
         private void Start()

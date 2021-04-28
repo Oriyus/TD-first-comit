@@ -11,9 +11,6 @@ namespace TD
         [SerializeField]
         private GameObject loot;
 
-        [SerializeField]
-        private int goldValue;
-
         private List<Transform> path;
         private SpriteRenderer graphics;
         public float speed;
@@ -75,10 +72,8 @@ namespace TD
         private void Start()
         {
             this.health = enemy.health;
-            this.goldValue = enemy.goldValue;
             this.path = PathManager.Instance.Path;
             this.transform.position = this.path[0].position;
-            this.speed = GameManager.Instance.EnemySpeed;
         }
     }
 }

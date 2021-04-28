@@ -1,6 +1,6 @@
 namespace TD
 {
-    using System.Collections;
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.Events;
@@ -26,7 +26,7 @@ namespace TD
         private bool initiateEnemieWaveCreation = false;
 
         public UnityEvent LaunchWaveEvent;
-        public UnityEvent CreateEnemyEvent;
+        public event Action<int,int> OnCreateEnemyEvent;
 
         public List<float> LaunchTimes
         {
@@ -98,7 +98,7 @@ namespace TD
                 if ((this.enemyIndex < this.enemiesNumber) && (this.currentLevelTime >= this.enemyCreateTimer))
                 {
                     EnemyTimer();
-                    this.CreateEnemyEvent.Invoke();
+                    this.OnCreateEnemyEvent?.Invoke(this.WaveIndex, this.enemyIndex);
                     this.enemyIndex++;
                 }
                 else if (this.enemyIndex == this.enemiesNumber)
@@ -129,10 +129,5 @@ namespace TD
             this.levelStartTime = Time.time;
         }
 
-        private void Start()
-        {
-            this.LaunchWaveEvent = new UnityEvent();
-            this.CreateEnemyEvent = new UnityEvent();
-        }
     }
 }
