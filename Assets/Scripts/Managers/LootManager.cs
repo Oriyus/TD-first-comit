@@ -1,5 +1,6 @@
 namespace TD
 {
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -8,7 +9,11 @@ namespace TD
         [SerializeField]
         private List<GameObject> lootOnMap;
 
+        public Action<int> OnPartsChanged;
+        public Action<int> OnGoldChanged;
+
         private int parts;
+        private int gold;
 
         public List<GameObject> Loot
         {
@@ -18,6 +23,11 @@ namespace TD
         public int Parts
         {
             get { return this.parts; }
+        }
+
+        public int Gold
+        {
+            get { return this.gold; }
         }
 
         public void CreateLoot(GameObject obj, Transform tsfm)
@@ -37,6 +47,8 @@ namespace TD
         {
             EnemyUnit.OnLootDropedEvent += CreateLoot;
             Collector.OnLootCollectedEvent += RemoveLoot;
+            this.parts = 0;
+            this.gold = 0;
         }
 
         private void Start()

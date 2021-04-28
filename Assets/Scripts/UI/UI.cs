@@ -44,9 +44,9 @@ namespace TD
         }
 
         // Set gold
-        public int SetGold
+        public void SetGold (int value)
         {
-            set { this.gold.text = value.ToString(); }
+            this.gold.text = value.ToString();
         }
 
         // Set time until next wave
@@ -137,9 +137,9 @@ namespace TD
             TimeManager.Instance.OnLastWave += SetLastWave;
         }
 
-        // Give all player units drag and drop component
         private void Start()
         {
+            // Give all player units drag and drop component
             for (int i = 0; i < playerUnits.Length; i++)
             {
                 playerUnits[i].gameObject.AddComponent<ItemDragHandler>();
@@ -147,6 +147,10 @@ namespace TD
             }
             this.radialMenuRect = this.radialMenu.GetComponent<RectTransform>();
             this.canvas = gameObject.GetComponentInChildren<Canvas>();
+
+            // Initialize starting resource values in UI
+            this.parts.text = LootManager.Instance.Parts.ToString();
+            this.gold.text = LootManager.Instance.Gold.ToString();
         }
     }
 }
