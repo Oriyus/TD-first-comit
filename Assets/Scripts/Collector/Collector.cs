@@ -1,12 +1,12 @@
 namespace TD
 {
-    using System.Linq;
-    using System.Collections;
-    using System.Collections.Generic;
+    using System;
     using UnityEngine;
 
     public class Collector : MonoBehaviour
     {
+        public static Action<GameObject> OnLootCollectedEvent;
+
         public float speed = 5f;
         public float rotSpeed = 5f;
 
@@ -34,7 +34,7 @@ namespace TD
             if (this.transform.position == LootManager.Instance.Loot[targetindex].transform.position)
             {
                 // Reached index loot
-                LootManager.Instance.RemoveLoot(targetindex);
+                OnLootCollectedEvent?.Invoke(LootManager.Instance.Loot[targetindex]);
             }
         }
 

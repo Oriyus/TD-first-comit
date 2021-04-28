@@ -27,6 +27,8 @@ namespace TD
 
         public UnityEvent LaunchWaveEvent;
         public event Action<int,int> OnCreateEnemyEvent;
+        public event Action<float> OnWaveTimeChanged;
+        public event Action<string> OnLastWave;
 
         public List<float> LaunchTimes
         {
@@ -113,11 +115,11 @@ namespace TD
             // Calculate When is the next wave if game not paused
             if (this.waveIndex < this.launchTimes.Count)
             {
-                GameManager.Instance.NextWaveTime = this.TimeTillNextWave(this.waveTimeSnapshot);
+                OnWaveTimeChanged?.Invoke(this.TimeTillNextWave(this.waveTimeSnapshot));
             }
             else
             {
-                GameManager.Instance.LastWave = "Last Wave!!!";
+                OnLastWave?.Invoke("Last Wave!!!");
             }
 
             // Current level time

@@ -37,26 +37,27 @@ namespace TD
         }
 
         // Set collected parts
-        public int SetParts
+        public void SetParts(GameObject obj)
         {
-            set { this.parts.text = value.ToString(); }
+            int partsAmount = LootManager.Instance.Parts;
+            this.parts.text = partsAmount.ToString();
         }
 
-        // Set collected gold
+        // Set gold
         public int SetGold
         {
             set { this.gold.text = value.ToString(); }
         }
 
         // Set time until next wave
-        public float SetTimeForNextWave
+        public void SetTimeForNextWave(float time)
         {
-            set { this.waveTimerText.text = Mathf.Floor(value).ToString(); }
+            this.waveTimerText.text = Mathf.Floor(time).ToString();
         }
 
-        public string SetLastWave
+        public void SetLastWave(string text)
         {
-            set { this.waveTimerText.text = value; }
+            this.waveTimerText.text = text;
         }
 
         // What happens when mouse is pressed to radial menu
@@ -121,6 +122,21 @@ namespace TD
             }
         }
 
+        private void Update()
+        {
+            if (showRadialMenu)
+            {
+                CheckRadialMenu();
+            }
+        }
+
+        private void Awake()
+        {
+            Collector.OnLootCollectedEvent += SetParts;
+            TimeManager.Instance.OnWaveTimeChanged += SetTimeForNextWave;
+            TimeManager.Instance.OnLastWave += SetLastWave;
+        }
+
         // Give all player units drag and drop component
         private void Start()
         {
@@ -131,14 +147,6 @@ namespace TD
             }
             this.radialMenuRect = this.radialMenu.GetComponent<RectTransform>();
             this.canvas = gameObject.GetComponentInChildren<Canvas>();
-        }
-
-        private void Update()
-        {
-            if (showRadialMenu)
-            {
-                CheckRadialMenu();
-            }
         }
     }
 }

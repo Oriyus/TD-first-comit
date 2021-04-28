@@ -1,16 +1,23 @@
 namespace TD
 {
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
     public class LootManager : Singleton<LootManager>
     {
+        [SerializeField]
         private List<GameObject> lootOnMap;
+
+        private int parts;
 
         public List<GameObject> Loot
         {
             get { return this.lootOnMap; }
+        }
+
+        public int Parts
+        {
+            get { return this.parts; }
         }
 
         public void CreateLoot(GameObject obj, Transform tsfm)
@@ -19,11 +26,17 @@ namespace TD
             this.lootOnMap.Add(newLoot);
         }
 
-        public void RemoveLoot(int index)
+        public void RemoveLoot(GameObject obj)
         {
-            GameManager.Instance.Parts = this.lootOnMap[index].GetComponent<Loot_A>().resources;
-            Destroy(this.lootOnMap[index]);
-            this.lootOnMap.RemoveAt(index);
+            this.lootOnMap.Remove(obj);
+            this.parts += obj.GetComponent<Loot_A>().resources;
+            Destroy(obj);
+        }
+
+        private void Awake()
+        {
+            EnemyUnit.OnLootDropedEvent += CreateLoot;
+            Collector.OnLootCollectedEvent += RemoveLoot;
         }
 
         private void Start()

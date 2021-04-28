@@ -1,5 +1,6 @@
 namespace TD
 {
+    using System;
     using UnityEngine;
     using System.Collections.Generic;
 
@@ -10,6 +11,8 @@ namespace TD
 
         [SerializeField]
         private GameObject loot;
+
+        public static Action<GameObject, Transform> OnLootDropedEvent;
 
         private List<Transform> path;
         private SpriteRenderer graphics;
@@ -26,7 +29,7 @@ namespace TD
             {
                 this.CheckWhichEnemyToRemove();
                 // Drop loot
-                LootManager.Instance.CreateLoot(this.loot, this.transform);
+                OnLootDropedEvent?.Invoke(this.loot, this.transform);
                 // Destroy enemy
                 Destroy(gameObject);
             }
