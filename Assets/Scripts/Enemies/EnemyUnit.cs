@@ -9,7 +9,6 @@ namespace TD
         [SerializeField]
         private Enemy enemy;
 
-        [SerializeField]
         private GameObject loot;
 
         public static Action<GameObject, Transform> OnLootDropedEvent;
@@ -76,6 +75,7 @@ namespace TD
         {
             this.health = enemy.health;
             this.speed = enemy.speed;
+            this.loot = enemy.loot;
             this.path = PathManager.Instance.Path;
             this.transform.position = this.path[0].position;
         }

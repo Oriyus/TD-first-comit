@@ -12,4 +12,6 @@ public class Enemy : ScriptableObject
 
     public int health;
     public float speed;
+
+    public GameObject loot;
 }
