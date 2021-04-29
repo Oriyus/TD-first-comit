@@ -9,7 +9,6 @@ namespace TD
 
         private Wave[] waves;
         private List<float> launchTimes;
-        private int[] wavesSpeeds;
         private List<Vector2> socketPositions;
         private List<Vector2> pathPoints;
 
@@ -21,11 +20,6 @@ namespace TD
         public List<float> LaunchTimes
         {
             get { return this.launchTimes; }
-        }
-
-        public int[] WavesSpeeds
-        {
-            get { return this.wavesSpeeds; }
         }
 
         public List<Vector2> SocketPositions
@@ -42,7 +36,6 @@ namespace TD
         {
             this.waves = this.levels[level].waves;
             this.launchTimes = this.levels[level].launchTimes;
-            this.wavesSpeeds = this.levels[level].wavesSpeeds;
             this.socketPositions = this.levels[level].socketPositions;
             this.pathPoints = this.levels[level].pathPoints;
         }

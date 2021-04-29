@@ -11,5 +11,5 @@ public class Enemy : ScriptableObject
     public Sprite artwork;
 
     public int health;
-    public int goldValue;
+    public float speed;
 }

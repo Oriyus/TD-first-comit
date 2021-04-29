@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a0c1947a7560a42a361366092b985c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 11400000, guid: e081d9c33c66ee24fa637bbc67c3719b, type: 2}
   enemy: {fileID: 11400000, guid: 611dffe8719f4c849b220886e5006757, type: 2}
   loot: {fileID: 3466675341672339358, guid: 975fa0900c5d1544aa0c694d2adad0b0, type: 3}
-  goldValue: 0
   speed: 1

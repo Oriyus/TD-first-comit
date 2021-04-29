@@ -75,6 +75,7 @@ namespace TD
         private void Start()
         {
             this.health = enemy.health;
+            this.speed = enemy.speed;
             this.path = PathManager.Instance.Path;
             this.transform.position = this.path[0].position;
         }
