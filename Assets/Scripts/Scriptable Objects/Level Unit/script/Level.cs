@@ -13,9 +13,6 @@ namespace TD
         // Times when waves will launch
         public List<float> launchTimes;
 
-        // Speed of waves
-        public int[] wavesSpeeds;
-
         // Sockets positions
         public List<Vector2> socketPositions;
 

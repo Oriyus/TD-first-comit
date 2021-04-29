@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40bb33dc8ad74f848a2c9479f7ca462e, type: 3}
-  m_Name: Android
+  m_Name: Bot
   m_EditorClassIdentifier: 
-  name: Android
-  description: Advanced bot that has more health
-  artwork: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  health: 20
-  speed: 2
+  name: Bot
+  description: Simplest enemy unit
+  artwork: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  health: 10
+  speed: 1
+  loot: {fileID: 3466675341672339358, guid: 975fa0900c5d1544aa0c694d2adad0b0, type: 3}
