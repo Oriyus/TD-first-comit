@@ -24,20 +24,12 @@ namespace TD
 
         private bool initiateEnemieWaveCreation = false;
 
-        public UnityEvent LaunchWaveEvent;
+        //public UnityEvent LaunchWaveEvent;
         public event Action<int,int> OnCreateEnemyEvent;
         public event Action<float> OnWaveTimeChanged;
         public event Action<string> OnLastWave;
 
-        public int EnemyIndex
-        {
-            get { return this.enemyIndex; }
-        }
-
-        public int WaveIndex
-        {
-            get { return this.wave; }
-        }
+        public FloatEvent floatEvent = null;
 
         public void PauseGame()
         {
@@ -60,8 +52,14 @@ namespace TD
             this.enemiesNumber = this.level.waves[index].waveEnemies.Length;
         }
 
+        public void TestEvent()
+        {
+
+        }
+
         private float TimeTillNextWave(float end)
         {
+            TestEvent();
             return this.countdownWaveTimer = end - this.currentLevelTime;
         }
 
@@ -70,7 +68,7 @@ namespace TD
             // Check for wave launching times
             if (this.waveIndex < this.level.launchTimes.Count && this.currentLevelTime >= this.level.launchTimes[this.waveIndex])
             {
-                this.LaunchWaveEvent.Invoke();
+                //this.LaunchWaveEvent.Invoke();
                 if (this.waveIndex < this.level.launchTimes.Count - 1)
                 {
                     // Wave number waveIndex
@@ -104,7 +102,7 @@ namespace TD
             // Calculate When is the next wave if game not paused
             if (this.waveIndex < this.level.launchTimes.Count)
             {
-                OnWaveTimeChanged?.Invoke(this.TimeTillNextWave(this.waveTimeSnapshot));
+                floatEvent.Invoke(this.TimeTillNextWave(this.waveTimeSnapshot));
             }
             else
             {

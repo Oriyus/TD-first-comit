@@ -621,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2329433645955249785}
   - component: {fileID: 2329433645955249784}
+  - component: {fileID: 305716485}
   m_Layer: 0
   m_Name: UI_new
   m_TagString: Untagged
@@ -671,6 +672,34 @@ MonoBehaviour:
   waveTimerText: {fileID: 1192433046844915713}
   gold: {fileID: 6771403400789212923}
   parts: {fileID: 6147811918938028011}
+--- !u!114 &305716485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329433645955249787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520cb3d41ee993043a44cde3a12be914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: cd080f7d386a8c1409e58d936236e02a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2329433645955249784}
+        m_TargetAssemblyTypeName: TD.UI, Assembly-CSharp
+        m_MethodName: SetTimeForNextWave
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2329433645955503235
 GameObject:
   m_ObjectHideFlags: 0

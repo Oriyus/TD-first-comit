@@ -50,9 +50,9 @@ namespace TD
         }
 
         // Set time until next wave
-        public void SetTimeForNextWave(float time)
+        public void SetTimeForNextWave(float value)
         {
-            this.waveTimerText.text = Mathf.Floor(time).ToString();
+            this.waveTimerText.text = Mathf.Floor(value).ToString();
         }
 
         public void SetLastWave(string text)
