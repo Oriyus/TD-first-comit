@@ -24,12 +24,8 @@ namespace TD
 
         private bool initiateEnemieWaveCreation = false;
 
-        //public UnityEvent LaunchWaveEvent;
-        public event Action<int,int> OnCreateEnemyEvent;
-        public event Action<float> OnWaveTimeChanged;
-        public event Action<string> OnLastWave;
-
-        public FloatEvent floatEvent = null;
+        public TypeEvent<float> floatEvent = null;
+        public TypeEvent<string> stringEvent = null;
 
         public void PauseGame()
         {
@@ -68,7 +64,7 @@ namespace TD
             // Check for wave launching times
             if (this.waveIndex < this.level.launchTimes.Count && this.currentLevelTime >= this.level.launchTimes[this.waveIndex])
             {
-                //this.LaunchWaveEvent.Invoke();
+                // Launch Wave
                 if (this.waveIndex < this.level.launchTimes.Count - 1)
                 {
                     // Wave number waveIndex
@@ -106,7 +102,7 @@ namespace TD
             }
             else
             {
-                OnLastWave?.Invoke("Last Wave!!!");
+                stringEvent.Invoke("Last Wave !!!");
             }
 
             // Current level time

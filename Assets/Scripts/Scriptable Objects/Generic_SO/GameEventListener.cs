@@ -3,15 +3,15 @@ using UnityEngine.Events;
 using System;
 
 [Serializable]
-public class FloatEvent : UnityEvent<float> { }
+public class TypeEvent<T> : UnityEvent<T> { }
 
-public class GameEventListener : MonoBehaviour
+public class GameEventListener<T> : MonoBehaviour
 {
     [Tooltip("Event to register with.")]
-    public GameEvent Event;
+    public GameEvent<T> Event;
 
     [Tooltip("Response to invoke when Event is raised.")]
-    public FloatEvent Response;
+    public TypeEvent<T> Response;
 
     private void OnEnable()
     {
@@ -23,7 +23,7 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised(float value)
+    public void OnEventRaised(T value)
     {
         Response?.Invoke(value);
     }
