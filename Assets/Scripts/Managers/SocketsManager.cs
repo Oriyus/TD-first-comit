@@ -3,35 +3,33 @@ namespace TD
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class SocketsManager : Singleton<SocketsManager>
+    public class SocketsManager : MonoBehaviour
     {
+        [SerializeField]
+        private Level level;
+
         [SerializeField]
         private GameObject socket;
 
-        private List<Vector2> socketsPositions;
-        public List<GameObject> sockets;
-
-        public List<Vector2> SocketPositions
-        {
-            set
-            {
-                this.socketsPositions = value;
-                this.InitiateSockets();
-            }
-        }
-
-        public List<GameObject> Sockets
-        {
-            get { return this.sockets; }
-        }
+        public Sockets sockets;
 
         private void InitiateSockets()
         {
-            for (int i = 0; i < this.socketsPositions.Count; i++)
+            for (int i = 0; i < this.level.socketPositions.Count; i++)
             {
-                Vector3 pos = this.socketsPositions[i];
+                Vector3 pos = this.level.socketPositions[i];
                 this.sockets.Add(Instantiate(this.socket, pos, Quaternion.identity));
             }
+        }
+
+        private void Awake()
+        {
+            InitiateSockets();
+        }
+
+        private void OnApplicationQuit()
+        {
+            this.sockets.Items.Clear();
         }
     }
 }

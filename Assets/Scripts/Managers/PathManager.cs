@@ -4,28 +4,24 @@ namespace TD
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class PathManager : Singleton<PathManager>
+    public class PathManager : MonoBehaviour
     {
-        public List<Transform> mapPath;
+        [SerializeField]
+        private Level level;
 
-        public List<Transform> Path
+        public void CreatePathPoints()
         {
-            get { return this.mapPath; }
-            set { this.mapPath = value; }
+            for (int i = 0; i < level.pathPoints.Count; i++)
+            {
+                Vector3 pos = level.pathPoints[i];
+                GameObject obj = new GameObject("path point " + i);
+                obj.transform.position = pos;
+            }
         }
 
-        public List<Vector2> PathPoints
+        private void Awake()
         {
-            set
-            {
-                for (int i = 0; i < value.Count; i++)
-                {
-                    Vector3 pos = value[i];
-                    GameObject obj = new GameObject("path point " + i);
-                    obj.transform.position = pos;
-                    mapPath.Add(obj.transform);
-                }
-            }
+            CreatePathPoints();
         }
     }
 }

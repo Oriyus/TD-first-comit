@@ -7,13 +7,19 @@ namespace TD
     public class EnemyUnit : MonoBehaviour
     {
         [SerializeField]
+        private Level level;
+
+        [SerializeField]
+        private Enemies enemies;
+
+        [SerializeField]
         private Enemy enemy;
 
         private GameObject loot;
 
         public static Action<GameObject, Transform> OnLootDropedEvent;
 
-        private List<Transform> path;
+        private List<Vector2> path;
         private SpriteRenderer graphics;
         public float speed;
         private int index = 0;
@@ -26,7 +32,6 @@ namespace TD
             this.health -= dmg;
             if (this.health <= 0)
             {
-                this.CheckWhichEnemyToRemove();
                 // Drop loot
                 OnLootDropedEvent?.Invoke(this.loot, this.transform);
                 // Destroy enemy
@@ -37,29 +42,19 @@ namespace TD
         // Moving enemy unit on given path
         private void UnitPathFollow()
         {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.path[this.index].position, this.speed * Time.deltaTime);
-            if ((this.index < this.path.Count - 1) && (this.transform.position == this.path[this.index].position))
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.path[this.index], this.speed * Time.deltaTime);
+            Vector3 targetPoint = this.path[index];
+            Vector3 lastPoint = this.path[this.path.Count - 1];
+            if ((this.index < this.path.Count - 1) && (this.transform.position == targetPoint))
             {
                 this.index++;
                 // Reached index path point
             }
-            else if(this.transform.position == this.path[this.path.Count -1].position)
+            else if(this.transform.position == lastPoint)
             {
                 // Reached End of Path
                 this.move = false;
-                this.CheckWhichEnemyToRemove();
                 Destroy(gameObject);
-            }
-        }
-
-        private void CheckWhichEnemyToRemove()
-        {
-            for (int i = 0; i <= EnemyManager.Instance.LiveEnemies.Count - 1; i++)
-            {
-                if (EnemyManager.Instance.LiveEnemies[i] == this.gameObject)
-                {
-                    EnemyManager.Instance.RemoveLiveEnemy(i);
-                }
             }
         }
 
@@ -76,8 +71,18 @@ namespace TD
             this.health = enemy.health;
             this.speed = enemy.speed;
             this.loot = enemy.loot;
-            this.path = PathManager.Instance.Path;
-            this.transform.position = this.path[0].position;
+            this.path = level.pathPoints;
+            this.transform.position = this.path[0];
+        }
+
+        private void OnEnable()
+        {
+            this.enemies.Add(this.gameObject);
+        }
+
+        private void OnDisable()
+        {
+            this.enemies.Remove(this.gameObject);
         }
     }
 }

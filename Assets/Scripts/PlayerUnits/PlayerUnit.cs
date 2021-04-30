@@ -4,6 +4,9 @@ namespace TD
 
     public class PlayerUnit : MonoBehaviour
     {
+        [SerializeField]
+        private Sockets sockets;
+
         public GameObject bullet;
         public float bulletSpeed;
         public int inSocket = -1;
@@ -17,7 +20,7 @@ namespace TD
         // Unregister unit and destroy it
         public void CancelUnit()
         {
-            SocketsManager.Instance.Sockets[inSocket].GetComponent<Socket>().SetUnoccupied();
+            sockets.Items[inSocket].GetComponent<Socket>().SetUnoccupied();
             Destroy(gameObject);
         }
 

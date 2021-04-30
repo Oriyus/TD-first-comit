@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 11400000, guid: e081d9c33c66ee24fa637bbc67c3719b, type: 2}
+  enemies: {fileID: 11400000, guid: 8a024527faca90847b6c863741228a3f, type: 2}
   enemy: {fileID: 11400000, guid: 3c41cdaac9ee57c47a15803bae347a89, type: 2}
-  loot: {fileID: 3466675341672339358, guid: 975fa0900c5d1544aa0c694d2adad0b0, type: 3}
   speed: 0

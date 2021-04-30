@@ -5,11 +5,10 @@ namespace TD
     using UnityEngine;
     using UnityEngine.Events;
 
-    public class TimeManager : Singleton<TimeManager>
+    public class TimeManager : MonoBehaviour
     {
-        private List<float> launchTimes;
-
-        private Wave[] waves;
+        [SerializeField]
+        private Level level;
 
         private int waveIndex = 0;
         private int enemyIndex = 0;
@@ -29,17 +28,6 @@ namespace TD
         public event Action<int,int> OnCreateEnemyEvent;
         public event Action<float> OnWaveTimeChanged;
         public event Action<string> OnLastWave;
-
-        public List<float> LaunchTimes
-        {
-            get { return this.launchTimes; }
-            set { this.launchTimes = value; }
-        }
-
-        public Wave[] Waves
-        {
-            set { this.waves = value; }
-        }
 
         public int EnemyIndex
         {
@@ -69,7 +57,7 @@ namespace TD
 
         private void GetEnemiesInWave(int index)
         {
-            this.enemiesNumber = this.waves[index].waveEnemies.Length;
+            this.enemiesNumber = this.level.waves[index].waveEnemies.Length;
         }
 
         private float TimeTillNextWave(float end)
@@ -80,13 +68,13 @@ namespace TD
         private void Update()
         {
             // Check for wave launching times
-            if (this.waveIndex < this.LaunchTimes.Count && this.currentLevelTime >= this.LaunchTimes[this.waveIndex])
+            if (this.waveIndex < this.level.launchTimes.Count && this.currentLevelTime >= this.level.launchTimes[this.waveIndex])
             {
                 this.LaunchWaveEvent.Invoke();
-                if (this.waveIndex < this.launchTimes.Count - 1)
+                if (this.waveIndex < this.level.launchTimes.Count - 1)
                 {
                     // Wave number waveIndex
-                    this.waveTimeSnapshot = this.currentLevelTime + this.LaunchTimes[this.waveIndex + 1] - this.launchTimes[this.waveIndex];
+                    this.waveTimeSnapshot = this.currentLevelTime + this.level.launchTimes[this.waveIndex + 1] - this.level.launchTimes[this.waveIndex];
                 }
                 this.GetEnemiesInWave(this.waveIndex);
                 this.initiateEnemieWaveCreation = true;
@@ -100,7 +88,8 @@ namespace TD
                 if ((this.enemyIndex < this.enemiesNumber) && (this.currentLevelTime >= this.enemyCreateTimer))
                 {
                     EnemyTimer();
-                    this.OnCreateEnemyEvent?.Invoke(this.WaveIndex, this.enemyIndex);
+                    //this.OnCreateEnemyEvent?.Invoke(this.WaveIndex, this.enemyIndex);
+                    GameObject newEnemy = Instantiate(this.level.waves[wave].waveEnemies[enemyIndex]);
                     this.enemyIndex++;
                 }
                 else if (this.enemyIndex == this.enemiesNumber)
@@ -113,7 +102,7 @@ namespace TD
             }
 
             // Calculate When is the next wave if game not paused
-            if (this.waveIndex < this.launchTimes.Count)
+            if (this.waveIndex < this.level.launchTimes.Count)
             {
                 OnWaveTimeChanged?.Invoke(this.TimeTillNextWave(this.waveTimeSnapshot));
             }
@@ -130,6 +119,5 @@ namespace TD
         {
             this.levelStartTime = Time.time;
         }
-
     }
 }

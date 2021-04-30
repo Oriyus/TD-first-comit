@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40bb33dc8ad74f848a2c9479f7ca462e, type: 3}
   m_Name: Android
   m_EditorClassIdentifier: 
+  enemies: {fileID: 11400000, guid: 88a59b825c4b1074591210aefc5b2d7a, type: 2}
   name: Android
   description: Advanced bot that has more health
   artwork: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

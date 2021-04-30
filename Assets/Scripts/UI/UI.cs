@@ -133,8 +133,8 @@ namespace TD
         private void Awake()
         {
             Collector.OnLootCollectedEvent += SetParts;
-            TimeManager.Instance.OnWaveTimeChanged += SetTimeForNextWave;
-            TimeManager.Instance.OnLastWave += SetLastWave;
+            //TimeManager.Instance.OnWaveTimeChanged += SetTimeForNextWave;
+            //TimeManager.Instance.OnLastWave += SetLastWave;
         }
 
         private void Start()
