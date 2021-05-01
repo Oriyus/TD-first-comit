@@ -95,5 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a16f03407ff6bb479b9749a0f3e50c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allLoot: {fileID: 11400000, guid: deae74f6e05fc194cb5e2703207299aa, type: 2}
   speed: 1
   rotSpeed: 5

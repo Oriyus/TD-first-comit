@@ -4,7 +4,7 @@ namespace TD
     using UnityEngine.UI;
     using TMPro;
 
-    public class UI : Singleton<UI>
+    public class UI : MonoBehaviour
     {
         public Button[] playerUnits;
         public GameObject radialMenu;
@@ -39,8 +39,8 @@ namespace TD
         // Set collected parts
         public void SetParts(GameObject obj)
         {
-            int partsAmount = LootManager.Instance.Parts;
-            this.parts.text = partsAmount.ToString();
+            //int partsAmount = LootManager.Instance.Parts;
+            //this.parts.text = partsAmount.ToString();
         }
 
         // Set gold
@@ -133,8 +133,6 @@ namespace TD
         private void Awake()
         {
             Collector.OnLootCollectedEvent += SetParts;
-            //TimeManager.Instance.OnWaveTimeChanged += SetTimeForNextWave;
-            //TimeManager.Instance.OnLastWave += SetLastWave;
         }
 
         private void Start()
@@ -149,8 +147,8 @@ namespace TD
             this.canvas = gameObject.GetComponentInChildren<Canvas>();
 
             // Initialize starting resource values in UI
-            this.parts.text = LootManager.Instance.Parts.ToString();
-            this.gold.text = LootManager.Instance.Gold.ToString();
+            //this.parts.text = LootManager.Instance.Parts.ToString();
+            //this.gold.text = LootManager.Instance.Gold.ToString();
         }
     }
 }

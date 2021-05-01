@@ -5,6 +5,8 @@ namespace TD
 
     public class Collector : MonoBehaviour
     {
+        public Loot allLoot;
+
         public static Action<GameObject> OnLootCollectedEvent;
 
         public float speed = 5f;
@@ -15,33 +17,36 @@ namespace TD
         {
             // Calculate closest loot
             int targetindex = 0;
-            for (int i = 0; i < LootManager.Instance.Loot.Count; i++)
+            for (int i = 0; i < allLoot.Items.Count; i++)
             {
-                if ((LootManager.Instance.Loot[i].transform.position - this.transform.position).magnitude < 
-                    (LootManager.Instance.Loot[targetindex].transform.position - this.transform.position).magnitude)
+                if ((allLoot.Items[i].transform.position - this.transform.position).magnitude < 
+                    (allLoot.Items[targetindex].transform.position - this.transform.position).magnitude)
                 {
                     targetindex = i;
                 }
             }
             // Move to position
-            this.transform.position = Vector2.MoveTowards(this.transform.position, LootManager.Instance.Loot[targetindex].transform.position, this.speed * Time.deltaTime);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, allLoot.Items[targetindex].transform.position, this.speed * Time.deltaTime);
             // Rotate towards target
-            var dir = LootManager.Instance.Loot[targetindex].transform.position - transform.position;
+            var dir = allLoot.Items[targetindex].transform.position - transform.position;
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * this.rotSpeed);
             //Check to see if loot reached
-            if (this.transform.position == LootManager.Instance.Loot[targetindex].transform.position)
+            if (this.transform.position == allLoot.Items[targetindex].transform.position)
             {
                 // Reached index loot
-                OnLootCollectedEvent?.Invoke(LootManager.Instance.Loot[targetindex]);
+                GameObject obj = allLoot.Items[targetindex];
+                allLoot.Items.Remove(obj);
+                //this.parts += obj.GetComponent<Loot_A>().resources;
+                Destroy(obj);
             }
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (LootManager.Instance.Loot.Count > 0)
+            if (allLoot.Items.Count > 0)
             {
                 this.UnitPathFollow();
             }

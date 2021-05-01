@@ -1,9 +1,6 @@
 namespace TD
 {
-    using System;
-    using System.Collections.Generic;
     using UnityEngine;
-    using UnityEngine.Events;
 
     public class TimeManager : MonoBehaviour
     {
@@ -48,14 +45,8 @@ namespace TD
             this.enemiesNumber = this.level.waves[index].waveEnemies.Length;
         }
 
-        public void TestEvent()
-        {
-
-        }
-
         private float TimeTillNextWave(float end)
         {
-            TestEvent();
             return this.countdownWaveTimer = end - this.currentLevelTime;
         }
 

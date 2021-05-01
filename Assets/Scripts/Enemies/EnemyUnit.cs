@@ -13,6 +13,9 @@ namespace TD
         private Enemies enemies;
 
         [SerializeField]
+        private Loot allLoot;
+
+        [SerializeField]
         private Enemy enemy;
 
         private GameObject loot;
@@ -33,7 +36,9 @@ namespace TD
             if (this.health <= 0)
             {
                 // Drop loot
-                OnLootDropedEvent?.Invoke(this.loot, this.transform);
+                //OnLootDropedEvent?.Invoke(this.loot, this.transform);
+                GameObject newLoot = Instantiate(this.loot, this.transform.position, Quaternion.identity);
+                allLoot.Add(newLoot);
                 // Destroy enemy
                 Destroy(gameObject);
             }

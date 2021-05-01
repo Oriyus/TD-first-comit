@@ -2,18 +2,21 @@ namespace TD
 {
     using UnityEngine;
 
-    public class InputManager : Singleton<InputManager>
+    public class InputManager : MonoBehaviour
     {
+        public StaticEvent leftClickDown = null;
+        public StaticEvent leftClickUp = null;
+
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                UI.Instance.CheckUnitClicked();
+                leftClickDown.Raise();
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                UI.Instance.MouseReleased();
+                leftClickUp.Raise();
             }
         }
     }
