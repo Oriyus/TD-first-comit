@@ -9,20 +9,12 @@ namespace TD
 
         public GameObject bullet;
         public float bulletSpeed;
-        public int inSocket = -1;
         public int bulletDmg = 1;
         public Collider2D clickArea;
 
         private bool shoot = false;
         private Transform target;
         private GameObject newBullet;
-
-        // Unregister unit and destroy it
-        public void CancelUnit()
-        {
-            sockets.Items[inSocket].GetComponent<Socket>().SetUnoccupied();
-            Destroy(gameObject);
-        }
 
         // Check for collision with enemy units to see if it should shoot
         private void OnTriggerStay2D(Collider2D collision)

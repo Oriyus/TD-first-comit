@@ -5,7 +5,7 @@ namespace TD
     public class TimeManager : MonoBehaviour
     {
         [SerializeField]
-        private Level level;
+        private LevelData level;
 
         private int waveIndex = 0;
         private int enemyIndex = 0;

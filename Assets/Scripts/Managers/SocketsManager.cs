@@ -5,7 +5,7 @@ namespace TD
     public class SocketsManager : MonoBehaviour
     {
         [SerializeField]
-        private Level level;
+        private LevelData level;
 
         [SerializeField]
         private GameObject socket;

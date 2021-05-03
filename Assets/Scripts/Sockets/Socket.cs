@@ -4,17 +4,19 @@ namespace TD
 
     public class Socket : MonoBehaviour
     {
-        public bool occupied = false;
-        public GameObject containsUnit = null;
+        private bool occupied = false;
+        private GameObject containsUnit = null;
 
-        public void SetOccupied()
+        public bool Occupied
         {
-            occupied = true;
+            set { this.occupied = value; }
+            get { return this.occupied; }
         }
 
-        public void SetUnoccupied()
+        public GameObject Contains
         {
-            occupied = false;
+            set { this.containsUnit = value; }
+            get { return this.containsUnit; }
         }
     }
 }

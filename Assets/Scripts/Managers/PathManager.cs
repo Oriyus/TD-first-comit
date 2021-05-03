@@ -5,7 +5,7 @@ namespace TD
     public class PathManager : MonoBehaviour
     {
         [SerializeField]
-        private Level level;
+        private LevelData level;
 
         public void CreatePathPoints()
         {

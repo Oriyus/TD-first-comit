@@ -82,7 +82,7 @@ namespace TD
                 case 0:
                     break;
                 case 1:
-                    unitSelected.GetComponent<PlayerUnit>().CancelUnit();
+                    unitSelected.GetComponent<UnitCancel>().CancelUnit(unitSelected.GetComponent<SocketOccupied>().SocketIndex);
                     break;
                 case 2:
                     Debug.Log("Upgrade");

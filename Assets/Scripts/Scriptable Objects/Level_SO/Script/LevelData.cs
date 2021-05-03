@@ -5,7 +5,7 @@ namespace TD
     using UnityEngine;
 
     [CreateAssetMenu(fileName = "New Level", menuName = "TD_Level")]
-    public class Level : ScriptableObject
+    public class LevelData : ScriptableObject
     {
         // What enemies in what wave
         public Wave[] waves;

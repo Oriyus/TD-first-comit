@@ -7,7 +7,7 @@ namespace TD
     public class EnemyUnit : MonoBehaviour
     {
         [SerializeField]
-        private Level level;
+        private LevelData level;
 
         [SerializeField]
         private Enemies enemies;
