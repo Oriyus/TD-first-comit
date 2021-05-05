@@ -12,9 +12,11 @@ namespace TD
         public GameObject[] menuHighlights;
         public Camera uiCamera;
         public TMP_Text waveTimerText;
-        public TMP_Text gold;
-        public TMP_Text parts;
+        public TMP_Text goldText;
+        public TMP_Text partsText;
 
+        private int partsValue;
+        private int goldValue;
         private List<GameObject> playerUnits = new List<GameObject>();
         private int radialMenuOption = -1;
         private GameObject unitSelected;
@@ -31,24 +33,25 @@ namespace TD
             {
                 if (hit.collider.tag == "unit click area")
                 {
-                    unitSelected = hit.collider.gameObject.transform.parent.gameObject;
-                    showRadialMenu = true;
+                    this.unitSelected = hit.collider.gameObject.transform.parent.gameObject;
+                    this.showRadialMenu = true;
                 }
             }
-            MouseClicked();
+
+            this.MouseClicked();
         }
 
         // Set collected parts
         public void SetParts(GameObject obj)
         {
-            //int partsAmount = LootManager.Instance.Parts;
-            //this.parts.text = partsAmount.ToString();
+            partsValue += obj.GetComponent<Loot_A>().resources;
+            this.partsText.text = partsValue.ToString();
         }
 
         // Set gold
         public void SetGold (int value)
         {
-            this.gold.text = value.ToString();
+            this.goldText.text = value.ToString();
         }
 
         // Set time until next wave
@@ -132,11 +135,6 @@ namespace TD
             }
         }
 
-        private void Awake()
-        {
-            Collector.OnLootCollectedEvent += SetParts;
-        }
-
         private void Start()
         {
             // Get Radial Menu Reference
@@ -152,8 +150,8 @@ namespace TD
             }
 
             // Initialize starting resource values in UI
-            //this.parts.text = LootManager.Instance.Parts.ToString();
-            //this.gold.text = LootManager.Instance.Gold.ToString();
+            this.partsText.text = "0";
+            this.goldText.text = "0";
         }
     }
 }

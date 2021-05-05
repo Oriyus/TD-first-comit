@@ -11,6 +11,7 @@ namespace TD
         private Sockets sockets;
 
         private LevelData level;
+
         public void Setup(LevelData lvlData)
         {
             this.level = lvlData;

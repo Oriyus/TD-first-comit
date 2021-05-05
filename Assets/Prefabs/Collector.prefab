@@ -96,5 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allLoot: {fileID: 11400000, guid: deae74f6e05fc194cb5e2703207299aa, type: 2}
+  OnLootCollected: {fileID: 11400000, guid: 7b4cd36974c70fa4c9d2b6c621678746, type: 2}
   speed: 1
   rotSpeed: 5
