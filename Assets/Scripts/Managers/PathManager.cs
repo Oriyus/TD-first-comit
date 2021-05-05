@@ -4,8 +4,13 @@ namespace TD
 
     public class PathManager : MonoBehaviour
     {
-        [SerializeField]
         private LevelData level;
+
+        public void Setup(LevelData lvlData)
+        {
+            this.level = lvlData;
+            CreatePathPoints();
+        }
 
         public void CreatePathPoints()
         {
@@ -15,11 +20,6 @@ namespace TD
                 GameObject obj = new GameObject("path point " + i);
                 obj.transform.position = pos;
             }
-        }
-
-        private void Awake()
-        {
-            CreatePathPoints();
         }
     }
 }

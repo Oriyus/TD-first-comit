@@ -4,7 +4,6 @@ namespace TD
 
     public class TimeManager : MonoBehaviour
     {
-        [SerializeField]
         private LevelData level;
 
         private int waveIndex = 0;
@@ -23,6 +22,11 @@ namespace TD
 
         public TypeEvent<float> floatEvent = null;
         public TypeEvent<string> stringEvent = null;
+
+        public void Setup(LevelData lvlData)
+        {
+            this.level = lvlData;
+        }
 
         public void PauseGame()
         {

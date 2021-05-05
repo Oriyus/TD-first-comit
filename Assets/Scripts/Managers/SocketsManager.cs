@@ -5,12 +5,17 @@ namespace TD
     public class SocketsManager : MonoBehaviour
     {
         [SerializeField]
-        private LevelData level;
-
-        [SerializeField]
         private GameObject socket;
 
-        public Sockets sockets;
+        [SerializeField]
+        private Sockets sockets;
+
+        private LevelData level;
+        public void Setup(LevelData lvlData)
+        {
+            this.level = lvlData;
+            CreateSockets();
+        }
 
         private void CreateSockets()
         {
@@ -19,11 +24,6 @@ namespace TD
                 Vector3 pos = this.level.socketPositions[i];
                 this.sockets.Add(Instantiate(this.socket, pos, Quaternion.identity));
             }
-        }
-
-        private void Awake()
-        {
-            CreateSockets();
         }
 
         private void OnApplicationQuit()

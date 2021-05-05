@@ -15,14 +15,14 @@ namespace TD
         public TMP_Text gold;
         public TMP_Text parts;
 
-        public List<GameObject> playerUnits;
+        private List<GameObject> playerUnits = new List<GameObject>();
         private int radialMenuOption = -1;
         private GameObject unitSelected;
         private bool showRadialMenu = false;
         private RectTransform radialMenuRect;
         private Canvas canvas;
 
-        // Check to see if we clicked over player Unit
+        // Check to see if we clicked over turret
         public void CheckUnitClicked()
         {
             LayerMask mask = LayerMask.GetMask("UnitsClick");
@@ -139,12 +139,18 @@ namespace TD
 
         private void Start()
         {
+            // Get Radial Menu Reference
             this.radialMenuRect = this.radialMenu.GetComponent<RectTransform>();
+
+            // Get Canvas Reference
             this.canvas = gameObject.GetComponentInChildren<Canvas>();
+
+            // Get All Turrets Buttons Reference
             foreach (Transform child in this.unitsParent)
             {
                 this.playerUnits.Add(child.gameObject);
             }
+
             // Initialize starting resource values in UI
             //this.parts.text = LootManager.Instance.Parts.ToString();
             //this.gold.text = LootManager.Instance.Gold.ToString();
