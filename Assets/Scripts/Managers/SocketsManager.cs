@@ -12,7 +12,7 @@ namespace TD
 
         public Sockets sockets;
 
-        private void InitiateSockets()
+        private void CreateSockets()
         {
             for (int i = 0; i < this.level.socketPositions.Count; i++)
             {
@@ -23,7 +23,7 @@ namespace TD
 
         private void Awake()
         {
-            InitiateSockets();
+            CreateSockets();
         }
 
         private void OnApplicationQuit()

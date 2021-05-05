@@ -5,8 +5,6 @@ namespace TD
 
     public class ItemDropHandler : MonoBehaviour, IDropHandler
     {
-        public LevelEventListener levelListener;
-
         [SerializeField]
         private Sockets sockets;
 

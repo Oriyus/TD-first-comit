@@ -3,10 +3,11 @@ namespace TD
     using UnityEngine;
     using UnityEngine.UI;
     using TMPro;
+    using System.Collections.Generic;
 
     public class UI : MonoBehaviour
     {
-        public Button[] playerUnits;
+        public RectTransform unitsParent;
         public GameObject radialMenu;
         public GameObject[] menuHighlights;
         public Camera uiCamera;
@@ -14,6 +15,7 @@ namespace TD
         public TMP_Text gold;
         public TMP_Text parts;
 
+        public List<GameObject> playerUnits;
         private int radialMenuOption = -1;
         private GameObject unitSelected;
         private bool showRadialMenu = false;
@@ -137,15 +139,12 @@ namespace TD
 
         private void Start()
         {
-            // Give all player units drag and drop component
-            for (int i = 0; i < playerUnits.Length; i++)
-            {
-                playerUnits[i].gameObject.AddComponent<ItemDragHandler>();
-                playerUnits[i].gameObject.AddComponent<ItemDropHandler>();
-            }
             this.radialMenuRect = this.radialMenu.GetComponent<RectTransform>();
             this.canvas = gameObject.GetComponentInChildren<Canvas>();
-
+            foreach (Transform child in this.unitsParent)
+            {
+                this.playerUnits.Add(child.gameObject);
+            }
             // Initialize starting resource values in UI
             //this.parts.text = LootManager.Instance.Parts.ToString();
             //this.gold.text = LootManager.Instance.Gold.ToString();
