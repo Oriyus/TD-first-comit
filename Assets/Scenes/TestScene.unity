@@ -631,6 +631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 7213803203192198437, guid: f8b502b99d8eb924b8af1c1242016795, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Setup
+      objectReference: {fileID: 0}
     - target: {fileID: 8335219422360595430, guid: f8b502b99d8eb924b8af1c1242016795, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -675,5 +679,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7213803203192198437, guid: f8b502b99d8eb924b8af1c1242016795, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f8b502b99d8eb924b8af1c1242016795, type: 3}

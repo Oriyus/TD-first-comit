@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b914c97df964fb44b89d0a29757ce09, type: 3}
-  m_Name: StringEvent_OnLastWave
+  m_Script: {fileID: 11500000, guid: c92be25f59cc0e247a7c4ea82882382f, type: 3}
+  m_Name: Loot Collected Event
   m_EditorClassIdentifier: 

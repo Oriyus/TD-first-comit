@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57e53abb81e8116439b952351fabc1fd, type: 3}
-  m_Name: InputLeftClickUpEvent
+  m_Name: Left Click Up Event
   m_EditorClassIdentifier: 
