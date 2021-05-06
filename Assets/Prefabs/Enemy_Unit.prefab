@@ -97,9 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a0c1947a7560a42a361366092b985c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: []
+  level: {fileID: 0}
+  enemies: {fileID: 0}
+  allLoot: {fileID: 0}
+  enemy: {fileID: 0}
+  OnLootDropedEvent: {fileID: 11400000, guid: 1a19f16dcc6f50e489e55a3ed48f958e, type: 2}
   speed: 5
-  health: 10
 --- !u!61 &7964559660521674276
 BoxCollider2D:
   m_ObjectHideFlags: 0

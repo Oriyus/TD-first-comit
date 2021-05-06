@@ -148,4 +148,5 @@ MonoBehaviour:
   enemies: {fileID: 11400000, guid: 8a024527faca90847b6c863741228a3f, type: 2}
   allLoot: {fileID: 11400000, guid: deae74f6e05fc194cb5e2703207299aa, type: 2}
   enemy: {fileID: 11400000, guid: 3c41cdaac9ee57c47a15803bae347a89, type: 2}
+  OnLootDropedEvent: {fileID: 11400000, guid: 1a19f16dcc6f50e489e55a3ed48f958e, type: 2}
   speed: 0

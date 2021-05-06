@@ -20,7 +20,8 @@ namespace TD
 
         private GameObject loot;
 
-        public static Action<GameObject, Transform> OnLootDropedEvent;
+        //public static Action<GameObject, Transform> OnLootDropedEvent;
+        public GameObjectEvent OnLootDropedEvent = null;
 
         private List<Vector2> path;
         private SpriteRenderer graphics;
@@ -36,9 +37,9 @@ namespace TD
             if (this.health <= 0)
             {
                 // Drop loot
-                //OnLootDropedEvent?.Invoke(this.loot, this.transform);
                 GameObject newLoot = Instantiate(this.loot, this.transform.position, Quaternion.identity);
                 allLoot.Add(newLoot);
+                OnLootDropedEvent.Raise(newLoot);
                 // Destroy enemy
                 Destroy(gameObject);
             }

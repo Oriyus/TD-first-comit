@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6768067922483837256}
   - component: {fileID: 7665312863429946634}
   - component: {fileID: 1919021072703670215}
+  - component: {fileID: 6722735013710194227}
   m_Layer: 0
   m_Name: Collector
   m_TagString: Untagged
@@ -96,6 +97,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allLoot: {fileID: 11400000, guid: deae74f6e05fc194cb5e2703207299aa, type: 2}
-  OnLootCollected: {fileID: 11400000, guid: 7b4cd36974c70fa4c9d2b6c621678746, type: 2}
   speed: 1
   rotSpeed: 5
+  OnLootCollected: {fileID: 11400000, guid: 7b4cd36974c70fa4c9d2b6c621678746, type: 2}
+--- !u!114 &6722735013710194227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671599658214690527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5de93d8ccbdd24b9a40ffc93b15811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 1a19f16dcc6f50e489e55a3ed48f958e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1919021072703670215}
+        m_TargetAssemblyTypeName: TD.Collector, Assembly-CSharp
+        m_MethodName: OnNewLootOnMap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
