@@ -20,7 +20,6 @@ namespace TD
 
         private GameObject loot;
 
-        //public static Action<GameObject, Transform> OnLootDropedEvent;
         public GameObjectEvent OnLootDropedEvent = null;
 
         private List<Vector2> path;

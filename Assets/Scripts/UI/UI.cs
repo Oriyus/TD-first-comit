@@ -15,8 +15,9 @@ namespace TD
         public TMP_Text goldText;
         public TMP_Text partsText;
 
-        private int partsValue;
-        private int goldValue;
+        [SerializeField]
+        private ReusablePartsResource_SO resources;
+
         private List<GameObject> playerUnits = new List<GameObject>();
         private int radialMenuOption = -1;
         private GameObject unitSelected;
@@ -42,16 +43,21 @@ namespace TD
         }
 
         // Set collected parts
-        public void SetParts(GameObject obj)
+        public void AddParts(GameObject obj)
         {
-            partsValue += obj.GetComponent<Loot_A>().resources;
-            this.partsText.text = partsValue.ToString();
+            this.resources.currentParts = this.resources.currentParts + obj.GetComponent<Loot_A>().resources;
+            this.SetParts();
+        }
+
+        public void SetParts()
+        {
+            this.partsText.text = this.resources.currentParts.ToString();
         }
 
         // Set gold
-        public void SetGold (int value)
+        public void SetGold ()
         {
-            this.goldText.text = value.ToString();
+            this.goldText.text = this.resources.currentGold.ToString();
         }
 
         // Set time until next wave
