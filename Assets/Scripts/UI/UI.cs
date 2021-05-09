@@ -16,7 +16,7 @@ namespace TD
         public TMP_Text partsText;
 
         [SerializeField]
-        private ReusablePartsResource_SO resources;
+        private Resource_SO resources;
 
         private List<GameObject> playerUnits = new List<GameObject>();
         private int radialMenuOption = -1;

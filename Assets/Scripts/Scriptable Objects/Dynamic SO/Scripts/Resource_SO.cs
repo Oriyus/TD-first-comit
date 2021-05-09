@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Reusable Parts Counter", menuName = "Dynamic/UI Resources")]
-public class ReusablePartsResource_SO : ScriptableObject
+public class Resource_SO : ScriptableObject
 {
     public int currentGold;
     public int currentParts;

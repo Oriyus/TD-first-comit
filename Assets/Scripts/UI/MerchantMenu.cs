@@ -13,7 +13,7 @@ namespace TD
         private GameObject sellButton;
 
         [SerializeField]
-        private ReusablePartsResource_SO resources;
+        private Resource_SO resources;
 
         public void OpenMerchantMenu()
         {
