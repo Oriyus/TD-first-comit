@@ -13,6 +13,9 @@ namespace TD
         [SerializeField]
         private Resource_SO resources;
 
+        [SerializeField]
+        private SelectedTurret selected;
+
         public void OpenMerchantMenu()
         {
             if (panel != null)
@@ -33,6 +36,11 @@ namespace TD
             this.resources.currentParts = 0;
             this.gameObject.GetComponent<UI>().SetGold();
             this.gameObject.GetComponent<UI>().SetParts();
+        }
+
+        public void OnUpgradeFireRate()
+        {
+            this.selected.Selected.GetComponent<Turret>().bulletSpeed += 1f;
         }
     }
 }

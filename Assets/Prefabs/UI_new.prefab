@@ -945,6 +945,7 @@ MonoBehaviour:
   panel: {fileID: 3339885976280693057}
   sellButton: {fileID: 4232169254284972221}
   resources: {fileID: 11400000, guid: 15b5c983a5046a84aa0c242b8d96c33e, type: 2}
+  selected: {fileID: 11400000, guid: bc26f1a078a6d774ca08360decaa76f6, type: 2}
 --- !u!114 &305716485
 MonoBehaviour:
   m_ObjectHideFlags: 0
