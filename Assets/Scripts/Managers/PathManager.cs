@@ -1,7 +1,7 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
     public class PathManager : MonoBehaviour
     {
         private LevelData level;

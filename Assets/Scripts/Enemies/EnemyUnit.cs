@@ -1,9 +1,9 @@
+using System;
+using UnityEngine;
+using System.Collections.Generic;
+
 namespace TD
 {
-    using System;
-    using UnityEngine;
-    using System.Collections.Generic;
-
     public class EnemyUnit : MonoBehaviour
     {
         [SerializeField]

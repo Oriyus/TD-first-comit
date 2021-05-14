@@ -1,7 +1,7 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
     public class Socket : MonoBehaviour
     {
         private bool occupied = false;

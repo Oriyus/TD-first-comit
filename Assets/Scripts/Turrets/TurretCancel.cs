@@ -1,8 +1,8 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
-    public class UnitCancel : MonoBehaviour
+    public class TurretCancel : MonoBehaviour
     {
         [SerializeField]
         private Sockets sockets;

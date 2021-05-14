@@ -1,9 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace TD
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine;
-
     public class Loot_A : MonoBehaviour
     {
         public int resources;

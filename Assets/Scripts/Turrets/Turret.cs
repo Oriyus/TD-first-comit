@@ -1,11 +1,14 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
-    public class PlayerUnit : MonoBehaviour
+    public class Turret : MonoBehaviour
     {
         [SerializeField]
         private Sockets sockets;
+
+        [SerializeField]
+        private Turrets liveTurrets;
 
         public GameObject bullet;
         public float bulletSpeed;
@@ -53,6 +56,16 @@ namespace TD
                     target.GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            this.liveTurrets.Add(this.gameObject);
+        }
+
+        private void OnDisable()
+        {
+            this.liveTurrets.Remove(this.gameObject);
         }
     }
 }

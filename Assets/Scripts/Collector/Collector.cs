@@ -1,8 +1,8 @@
+using System;
+using UnityEngine;
+
 namespace TD
 {
-    using System;
-    using UnityEngine;
-
     public class Collector : MonoBehaviour
     {
         [SerializeField]

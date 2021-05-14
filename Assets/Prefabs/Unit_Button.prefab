@@ -183,3 +183,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sockets: {fileID: 11400000, guid: 6f7968e7eb42ab847b4e754776a39c1d, type: 2}
   turrets: {fileID: 11400000, guid: 085e0a619297c0e43a24c86019921e6b, type: 2}
+  liveTurrets: {fileID: 11400000, guid: 294caff777a40b644bdf6fec597cadd6, type: 2}

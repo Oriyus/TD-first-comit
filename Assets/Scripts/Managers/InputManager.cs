@@ -1,11 +1,12 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
     public class InputManager : MonoBehaviour
     {
         public StaticEvent leftClickDown = null;
         public StaticEvent leftClickUp = null;
+        public StaticEvent rightClickDown = null;
 
         void Update()
         {
@@ -17,6 +18,11 @@ namespace TD
             if (Input.GetMouseButtonUp(0))
             {
                 leftClickUp.Raise();
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                rightClickDown.Raise();
             }
         }
     }

@@ -1,10 +1,9 @@
+using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
+
 namespace TD
 {
-    using UnityEngine;
-    using UnityEngine.UI;
-    using TMPro;
-    using System.Collections.Generic;
-
     public class UI : MonoBehaviour
     {
         public RectTransform unitsParent;
@@ -93,7 +92,7 @@ namespace TD
                 case 0:
                     break;
                 case 1:
-                    unitSelected.GetComponent<UnitCancel>().CancelUnit(unitSelected.GetComponent<SocketOccupied>().SocketIndex);
+                    unitSelected.GetComponent<TurretCancel>().CancelUnit(unitSelected.GetComponent<SocketOccupied>().SocketIndex);
                     break;
                 case 2:
                     Debug.Log("Upgrade");

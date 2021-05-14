@@ -1,7 +1,7 @@
+using UnityEngine;
+
 namespace TD
 {
-    using UnityEngine;
-
     public class UnitDropHandler : ItemDropHandler
     {
         [SerializeField]
@@ -27,6 +27,10 @@ namespace TD
             }
         }
 
+        private void Start()
+        {
+
+        }
     }
 }
 
