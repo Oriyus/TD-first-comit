@@ -16,6 +16,9 @@ namespace TD
         [SerializeField]
         private SelectedTurret selected;
 
+        [SerializeField]
+        private Upgrade[] rateOfFireUpgrades;
+
         public void OpenMerchantMenu()
         {
             if (panel != null)
@@ -40,7 +43,24 @@ namespace TD
 
         public void OnUpgradeFireRate()
         {
-            this.selected.Selected.GetComponent<Turret>().bulletSpeed += 1f;
+            Turret tur = this.selected.Selected.GetComponent<Turret>();
+            if ((tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1) && (this.resources.currentGold < this.rateOfFireUpgrades[tur.RateOfFireTier + 1].cost))
+            {
+                Debug.Log("Not enough Gold for Upgrade");
+                return;
+            }
+
+            if (tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1)
+            {
+                tur.RateOfFireTier += 1;
+                tur.bulletSpeed = this.rateOfFireUpgrades[tur.RateOfFireTier].rateOfFire;
+                this.resources.currentGold -= this.rateOfFireUpgrades[tur.RateOfFireTier].cost;
+                this.gameObject.GetComponent<UI>().SetGold();
+            }
+            else
+            {
+                Debug.Log("Turret Upgraded to max Fire Rate");
+            }
         }
     }
 }

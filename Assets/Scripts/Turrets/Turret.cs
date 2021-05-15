@@ -19,6 +19,10 @@ namespace TD
         private Transform target;
         private GameObject newBullet;
 
+        public int rateOfFireTier = 0;
+
+        public int RateOfFireTier { get {return this.rateOfFireTier; } set {this.rateOfFireTier = value; } }
+
         // Check for collision with enemy units to see if it should shoot
         private void OnTriggerStay2D(Collider2D collision)
         {

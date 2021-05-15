@@ -946,6 +946,11 @@ MonoBehaviour:
   sellButton: {fileID: 4232169254284972221}
   resources: {fileID: 11400000, guid: 15b5c983a5046a84aa0c242b8d96c33e, type: 2}
   selected: {fileID: 11400000, guid: bc26f1a078a6d774ca08360decaa76f6, type: 2}
+  rateOfFireUpgrades:
+  - {fileID: 11400000, guid: 99b9353b28b3a6149ba4b5f888f71c0e, type: 2}
+  - {fileID: 11400000, guid: 0171344db0dfb774f97d90a29177f08a, type: 2}
+  - {fileID: 11400000, guid: b2188fc9bdb4d1d4e90589c1765c5e8e, type: 2}
+  - {fileID: 11400000, guid: 7d46d68fcd68cfd4a8bb6a3a47f9e9e3, type: 2}
 --- !u!114 &305716485
 MonoBehaviour:
   m_ObjectHideFlags: 0
