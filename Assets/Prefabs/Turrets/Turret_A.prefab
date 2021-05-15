@@ -259,11 +259,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sockets: {fileID: 11400000, guid: 6f7968e7eb42ab847b4e754776a39c1d, type: 2}
   liveTurrets: {fileID: 11400000, guid: 294caff777a40b644bdf6fec597cadd6, type: 2}
+  splash: {fileID: 8950806507185320664, guid: 4341ccf16f319534cb72283808f44a7a, type: 3}
   bullet: {fileID: 7329533749184775634, guid: 979117a174c75564cb69dcbe2c1ce152, type: 3}
   bulletSpeed: 5
   bulletDmg: 1
   clickArea: {fileID: 7735290528817918021}
-  rateOfFireTier: 0
 --- !u!114 &5663338921768734899
 MonoBehaviour:
   m_ObjectHideFlags: 0
