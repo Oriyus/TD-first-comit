@@ -262,6 +262,7 @@ MonoBehaviour:
   splash: {fileID: 8950806507185320664, guid: 4341ccf16f319534cb72283808f44a7a, type: 3}
   bullet: {fileID: 7329533749184775634, guid: 979117a174c75564cb69dcbe2c1ce152, type: 3}
   bulletSpeed: 5
+  splashArea: 1
   bulletDmg: 1
   clickArea: {fileID: 7735290528817918021}
 --- !u!114 &5663338921768734899

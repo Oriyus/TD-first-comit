@@ -9,7 +9,7 @@ public class Upgrade : ScriptableObject
     public float rateOfFire;
 
     // Splash
-    public bool splash;
+    public float splash;
 
     // Barrels
     public int barrels;

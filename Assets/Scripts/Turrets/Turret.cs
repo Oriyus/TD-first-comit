@@ -15,6 +15,7 @@ namespace TD
 
         public GameObject bullet;
         public float bulletSpeed;
+        public float splashArea;
         public int bulletDmg = 1;
         public Collider2D clickArea;
 
@@ -23,10 +24,10 @@ namespace TD
         private GameObject newBullet;
 
         private int rateOfFireTier = 0;
-        private bool splashActive = false;
+        private int splashTier = 0;
 
         public int RateOfFireTier { get {return this.rateOfFireTier; } set {this.rateOfFireTier = value; } }
-        public bool SplashActive { get { return this.splashActive; } set { this.splashActive = value; } }
+        public int SplashTier { get { return this.splashTier; } set { this.splashTier = value; } }
 
         // Check for collision with enemy units to see if it should shoot
         private void OnTriggerStay2D(Collider2D collision)
@@ -36,24 +37,27 @@ namespace TD
                 target = collision.gameObject.transform;
                 newBullet = Instantiate(bullet);
                 newBullet.transform.position = this.transform.position;
+                target.GetComponent<EnemyUnit>().SubscribeBullet(newBullet);
                 shoot = true;
             }
         }
 
         private void Update()
         {
-            if (shoot)
+            if (newBullet && shoot)
             {
                 newBullet.transform.position = Vector2.MoveTowards(newBullet.transform.position, target.position, bulletSpeed * Time.deltaTime);
                 if (newBullet.transform.position == target.position)
                 {
                     // Bullet reached target
-                    if (this.splashActive)
+                    if (this.splashTier > 0)
                     {
-                        Instantiate(this.splash, newBullet.transform.position, Quaternion.identity);
+                        GameObject newSplash = Instantiate(this.splash, newBullet.transform.position, Quaternion.identity);
+                        newSplash.GetComponent<Splash>().Scale = this.splashArea;
                     }
                     newBullet.transform.position = this.transform.position;
                     target.GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
+                    target.GetComponent<EnemyUnit>().UnsubscribeBullet(newBullet);
                     shoot = false;
                     target = null;
                     Destroy(newBullet);
