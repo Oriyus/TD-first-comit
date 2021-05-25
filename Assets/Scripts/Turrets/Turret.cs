@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TD
@@ -13,15 +14,20 @@ namespace TD
         [SerializeField]
         private GameObject splash;
 
+        [SerializeField]
+        private Transform[] barrels;
+
         public GameObject bullet;
         public float bulletSpeed;
         public float splashArea;
         public int bulletDmg = 1;
         public Collider2D clickArea;
+        public int activeBarrels = 1;
 
-        private bool shoot = false;
         private Transform target;
-        private GameObject newBullet;
+
+        private List<GameObject> newBullet;
+        private List<GameObject> newSplash;
 
         private int rateOfFireTier = 0;
         private int splashTier = 0;
@@ -29,40 +35,65 @@ namespace TD
         public int RateOfFireTier { get {return this.rateOfFireTier; } set {this.rateOfFireTier = value; } }
         public int SplashTier { get { return this.splashTier; } set { this.splashTier = value; } }
 
-        // Check for collision with enemy units to see if it should shoot
+        // Check for collision with enemy units to see if turret should shoot
         private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("enemy") && !target)
             {
                 target = collision.gameObject.transform;
-                newBullet = Instantiate(bullet);
-                newBullet.transform.position = this.transform.position;
-                target.GetComponent<EnemyUnit>().SubscribeBullet(newBullet);
-                shoot = true;
+                for (int i = 0; i <= activeBarrels; i++)
+                {
+                    newBullet[i].transform.position = this.barrels[i].position;
+                }
+            }
+        }
+
+        private void Shoot(int index)
+        {
+            if (target)
+            {
+                newBullet[index].SetActive(true);
+                newBullet[index].transform.position = Vector2.MoveTowards(newBullet[index].transform.position, target.position, bulletSpeed * Time.deltaTime);
+                
+                // Bullet reached target
+                if (newBullet[index].transform.position == target.position)
+                {
+                    // Should bullet make splash damage
+                    if (this.splashTier > 0)
+                    {
+                        newSplash[index].transform.position = newBullet[index].transform.position;
+                        Splash spl = newSplash[index].GetComponent<Splash>();
+                        spl.Scale = this.splashArea;
+                        spl.Explode();
+                    }
+                    newBullet[index].transform.position = this.barrels[index].position;
+                    newBullet[index].SetActive(false);
+                    target.GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
+                }
             }
         }
 
         private void Update()
         {
-            if (newBullet && shoot)
+            for (int i = 0; i <= this.activeBarrels; i++)
             {
-                newBullet.transform.position = Vector2.MoveTowards(newBullet.transform.position, target.position, bulletSpeed * Time.deltaTime);
-                if (newBullet.transform.position == target.position)
-                {
-                    // Bullet reached target
-                    if (this.splashTier > 0)
-                    {
-                        GameObject newSplash = Instantiate(this.splash, newBullet.transform.position, Quaternion.identity);
-                        newSplash.GetComponent<Splash>().Scale = this.splashArea;
-                    }
-                    newBullet.transform.position = this.transform.position;
-                    target.GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
-                    target.GetComponent<EnemyUnit>().UnsubscribeBullet(newBullet);
-                    shoot = false;
-                    target = null;
-                    Destroy(newBullet);
-                }
+                this.Shoot(i);
             }
+        }
+
+        private void Start()
+        {
+            this.newBullet = new List<GameObject>();
+            this.newSplash = new List<GameObject>();
+
+            for (int i = 0; i <= this.activeBarrels; i++)
+            {
+                GameObject bul = Instantiate(this.bullet);
+                bul.SetActive(false);
+                this.newBullet.Add(bul);
+                this.newSplash.Add(Instantiate(this.splash));
+            }
+
         }
 
         private void OnEnable()

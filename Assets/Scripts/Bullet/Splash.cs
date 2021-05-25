@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TD
 {
     public class Splash : MonoBehaviour
     {
+
+        [SerializeField]
+        private int splashDmg;
+
         private bool boom = false;
         private Vector3 startScale;
         private Vector3 targetScale;
@@ -26,12 +28,26 @@ namespace TD
             }
         }
 
-        private void OnEnable()
+        public void Explode()
         {
             this.boom = true;
             this.startScale = new Vector3(0f, 0f, 0f);
             this.transform.localScale = this.startScale;
             this.currentTime = 0f;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("enemy"))
+            {
+                Transform target = collision.gameObject.transform;
+                target.GetComponent<EnemyUnit>().DamageEnemy(splashDmg);
+            }
+        }
+
+        private void OnEnable()
+        {
+
         }
 
         private void Update()
@@ -43,7 +59,7 @@ namespace TD
                 if (this.currentTime >= this.duration)
                 {
                     this.boom = false;
-                    Destroy(this.gameObject);
+                    this.transform.localScale = this.startScale;
                 }
             }
         }

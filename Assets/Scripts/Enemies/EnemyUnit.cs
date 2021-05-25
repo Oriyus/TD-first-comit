@@ -21,8 +21,6 @@ namespace TD
         [SerializeField]
         public float speed;
 
-        public List<GameObject> subscribedBullets;
-
         public GameObjectEvent OnLootDropedEvent = null;
 
         private GameObject loot;
@@ -30,17 +28,7 @@ namespace TD
         private SpriteRenderer graphics;
         private int index = 0;
         private bool move = true;
-        private int health;
-
-        public void SubscribeBullet(GameObject obj)
-        {
-            this.subscribedBullets.Add(obj);
-        }
-
-        public void UnsubscribeBullet(GameObject obj)
-        {
-            this.subscribedBullets.Remove(obj);
-        }
+        public int health;
 
         // Do damage to enemy unit
         public void DamageEnemy(int dmg)
@@ -52,11 +40,7 @@ namespace TD
                 GameObject newLoot = Instantiate(this.loot, this.transform.position, Quaternion.identity);
                 allLoot.Add(newLoot);
                 OnLootDropedEvent.Raise(newLoot);
-                // Destroy all bullets subscribed to this enemy
-                foreach (var item in subscribedBullets)
-                {
-                    Destroy(item);
-                }
+
                 // Destroy enemy
                 Destroy(gameObject);
             }
@@ -96,7 +80,6 @@ namespace TD
             this.loot = enemy.loot;
             this.path = level.pathPoints;
             this.transform.position = this.path[0];
-            this.subscribedBullets = new List<GameObject>();
         }
 
         private void OnEnable()

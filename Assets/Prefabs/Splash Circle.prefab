@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5514602499727382670}
   - component: {fileID: 8011918456141635893}
+  - component: {fileID: 8144472582231473620}
   - component: {fileID: 44210326039178703}
   m_Layer: 0
   m_Name: Splash Circle
@@ -83,6 +84,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8144472582231473620
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950806507185320664}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &44210326039178703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,3 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34754a8105e184640a607707336fd290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splashDmg: 1
