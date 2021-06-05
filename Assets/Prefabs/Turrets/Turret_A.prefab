@@ -528,7 +528,7 @@ MonoBehaviour:
   splashArea: 1
   bulletDmg: 1
   clickArea: {fileID: 7735290528817918021}
-  activeBarrels: 2
+  activeBarrels: 0
 --- !u!114 &5663338921768734899
 MonoBehaviour:
   m_ObjectHideFlags: 0

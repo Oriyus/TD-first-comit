@@ -91,7 +91,7 @@ namespace TD
                 GameObject bul = Instantiate(this.bullet);
                 bul.SetActive(false);
                 this.newBullet.Add(bul);
-                this.newSplash.Add(Instantiate(this.splash));
+                this.newSplash.Add(Instantiate(this.splash, new Vector3(1000f, 1000f, 0f), Quaternion.identity));
             }
 
         }
