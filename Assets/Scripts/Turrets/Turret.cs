@@ -24,10 +24,11 @@ namespace TD
         public Collider2D clickArea;
         public int activeBarrels = 1;
 
-        private Transform target;
-
+        private List<Transform> targets;
         private List<GameObject> newBullet;
         private List<GameObject> newSplash;
+
+        private bool targetAquired = false;
 
         private int rateOfFireTier = 0;
         private int splashTier = 0;
@@ -35,49 +36,84 @@ namespace TD
         public int RateOfFireTier { get {return this.rateOfFireTier; } set {this.rateOfFireTier = value; } }
         public int SplashTier { get { return this.splashTier; } set { this.splashTier = value; } }
 
-        // Check for collision with enemy units to see if turret should shoot
-        private void OnTriggerStay2D(Collider2D collision)
+        private void ResetBulletsPosition()
         {
-            if (collision.gameObject.CompareTag("enemy") && !target)
+            for (int i = 0; i <= activeBarrels; i++)
             {
-                target = collision.gameObject.transform;
-                for (int i = 0; i <= activeBarrels; i++)
-                {
-                    newBullet[i].transform.position = this.barrels[i].position;
-                }
+                newBullet[i].transform.position = this.barrels[i].position;
             }
         }
 
-        private void Shoot(int index)
+        // Check for collision with enemy units
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (target)
+            if (collision.gameObject.CompareTag("enemy"))
             {
-                newBullet[index].SetActive(true);
-                newBullet[index].transform.position = Vector2.MoveTowards(newBullet[index].transform.position, target.position, bulletSpeed * Time.deltaTime);
-                
-                // Bullet reached target
-                if (newBullet[index].transform.position == target.position)
+                targets.Add(collision.gameObject.transform);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("enemy"))
+            {
+                targets.Remove(collision.gameObject.transform);
+                if (targets.Count == 0)
                 {
-                    // Should bullet make splash damage
-                    if (this.splashTier > 0)
-                    {
-                        newSplash[index].transform.position = newBullet[index].transform.position;
-                        Splash spl = newSplash[index].GetComponent<Splash>();
-                        spl.Scale = this.splashArea;
-                        spl.Explode();
-                    }
-                    newBullet[index].transform.position = this.barrels[index].position;
-                    newBullet[index].SetActive(false);
-                    target.GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
+                    DisableAllBullets();
                 }
+            }
+            if (collision.gameObject.CompareTag("bullet"))
+            {
+                collision.gameObject.SetActive(false);
+            }
+        }
+
+        private void DisableAllBullets()
+        {
+            foreach (var item in newBullet)
+            {
+                item.SetActive(false);
+            }
+        }
+
+        private void Shoot(int barrelIndex)
+        {
+            newBullet[barrelIndex].SetActive(true);
+            newBullet[barrelIndex].transform.position = Vector2.MoveTowards(newBullet[barrelIndex].transform.position, targets[0].position, bulletSpeed * Time.deltaTime);
+                
+            // Bullet reached target
+            if (newBullet[barrelIndex].transform.position == targets[0].position)
+            {
+                // Should bullet make splash damage
+                if (this.splashTier > 0)
+                {
+                    newSplash[barrelIndex].transform.position = newBullet[barrelIndex].transform.position;
+                    Splash spl = newSplash[barrelIndex].GetComponent<Splash>();
+                    spl.Scale = this.splashArea;
+                    spl.Explode();
+                }
+
+                newBullet[barrelIndex].transform.position = this.barrels[barrelIndex].position;
+                newBullet[barrelIndex].SetActive(false);
+                targets[0].GetComponent<EnemyUnit>().DamageEnemy(bulletDmg);
             }
         }
 
         private void Update()
         {
-            for (int i = 0; i <= this.activeBarrels; i++)
+            if (targets.Count > 0)
             {
-                this.Shoot(i);
+                if (!targetAquired)
+                {
+                    targetAquired = true;
+                    ResetBulletsPosition();
+                }
+
+                for (int i = 0; i <= this.activeBarrels; i++)
+                {
+                    this.Shoot(i);
+                }
             }
         }
 
@@ -85,6 +121,7 @@ namespace TD
         {
             this.newBullet = new List<GameObject>();
             this.newSplash = new List<GameObject>();
+            this.targets = new List<Transform>();
 
             for (int i = 0; i <= this.activeBarrels; i++)
             {
@@ -93,7 +130,6 @@ namespace TD
                 this.newBullet.Add(bul);
                 this.newSplash.Add(Instantiate(this.splash, new Vector3(1000f, 1000f, 0f), Quaternion.identity));
             }
-
         }
 
         private void OnEnable()
