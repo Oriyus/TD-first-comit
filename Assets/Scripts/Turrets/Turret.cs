@@ -33,10 +33,10 @@ namespace TD
         private int rateOfFireTier = 0;
         private int splashTier = 0;
 
-        public int RateOfFireTier { get {return this.rateOfFireTier; } set {this.rateOfFireTier = value; } }
+        public int RateOfFireTier { get { return this.rateOfFireTier; } set { this.rateOfFireTier = value; } }
         public int SplashTier { get { return this.splashTier; } set { this.splashTier = value; } }
 
-        private void ResetBulletsPosition()
+        private void ResetAllBulletsPosition()
         {
             for (int i = 0; i <= activeBarrels; i++)
             {
@@ -53,15 +53,14 @@ namespace TD
             }
         }
 
+        // Check for enemy/bullet exiting shooting range
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("enemy"))
             {
                 targets.Remove(collision.gameObject.transform);
-                if (targets.Count == 0)
-                {
-                    DisableAllBullets();
-                }
+                DisableAllBullets();
+                ResetAllBulletsPosition();
             }
             if (collision.gameObject.CompareTag("bullet"))
             {
@@ -69,6 +68,7 @@ namespace TD
             }
         }
 
+        // Deactivate all bullet objects
         private void DisableAllBullets()
         {
             foreach (var item in newBullet)
@@ -77,11 +77,12 @@ namespace TD
             }
         }
 
+        // Shoot from active barrels
         private void Shoot(int barrelIndex)
         {
             newBullet[barrelIndex].SetActive(true);
             newBullet[barrelIndex].transform.position = Vector2.MoveTowards(newBullet[barrelIndex].transform.position, targets[0].position, bulletSpeed * Time.deltaTime);
-                
+
             // Bullet reached target
             if (newBullet[barrelIndex].transform.position == targets[0].position)
             {
@@ -107,7 +108,7 @@ namespace TD
                 if (!targetAquired)
                 {
                     targetAquired = true;
-                    ResetBulletsPosition();
+                    ResetAllBulletsPosition();
                 }
 
                 for (int i = 0; i <= this.activeBarrels; i++)
