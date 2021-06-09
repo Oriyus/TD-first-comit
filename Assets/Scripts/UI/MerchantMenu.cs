@@ -22,6 +22,9 @@ namespace TD
         [SerializeField]
         private Upgrade[] splashUpgrades;
 
+        public StaticEvent FireRateUpgrade = null;
+        public StaticEvent SplashUpgrade = null;
+
         public void OpenMerchantMenu()
         {
             if (panel != null)
@@ -46,46 +49,49 @@ namespace TD
 
         public void OnUpgradeFireRate()
         {
-            Turret tur = this.selected.Selected.GetComponent<Turret>();
-            if ((tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1) && (this.resources.currentGold < this.rateOfFireUpgrades[tur.RateOfFireTier + 1].cost))
-            {
-                Debug.Log("Not enough Gold for Upgrade");
-                return;
-            }
-
-            if (tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1)
-            {
-                tur.RateOfFireTier += 1;
-                tur.bulletSpeed = this.rateOfFireUpgrades[tur.RateOfFireTier].rateOfFire;
-                this.resources.currentGold -= this.rateOfFireUpgrades[tur.RateOfFireTier].cost;
-                this.gameObject.GetComponent<UI>().SetGold();
-            }
-            else
-            {
-                Debug.Log("Turret Upgraded to max Fire Rate");
-            }
+            FireRateUpgrade.Raise();
+            //Turret tur = this.selected.Selected.GetComponent<Turret>();
+            //if ((tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1) && (this.resources.currentGold < this.rateOfFireUpgrades[tur.RateOfFireTier + 1].cost))
+            //{
+            //    Debug.Log("Not enough Gold for Upgrade");
+            //    return;
+            //}
+            //
+            //if (tur.RateOfFireTier < this.rateOfFireUpgrades.Length - 1)
+            //{
+            //    tur.RateOfFireTier += 1;
+            //    tur.bulletSpeed = this.rateOfFireUpgrades[tur.RateOfFireTier].rateOfFire;
+            //    this.resources.currentGold -= this.rateOfFireUpgrades[tur.RateOfFireTier].cost;
+            //    this.gameObject.GetComponent<UI>().SetGold();
+            //}
+            //else
+            //{
+            //    Debug.Log("Turret Upgraded to max Fire Rate");
+            //}
         }
 
         public void OnUpgradeSplash()
         {
-            Turret tur = this.selected.Selected.GetComponent<Turret>();
-            if ((tur.SplashTier < this.splashUpgrades.Length - 1) && (this.resources.currentGold < this.splashUpgrades[tur.SplashTier + 1].cost))
-            {
-                Debug.Log("Not enough Gold for Upgrade");
-                return;
-            }
+            SplashUpgrade.Raise();
 
-            if (tur.SplashTier < this.splashUpgrades.Length - 1)
-            {
-                tur.SplashTier += 1;
-                tur.splashArea = this.splashUpgrades[tur.SplashTier].splash;
-                this.resources.currentGold -= this.splashUpgrades[tur.SplashTier].cost;
-                this.gameObject.GetComponent<UI>().SetGold();
-            }
-            else
-            {
-                Debug.Log("Turret Upgraded to max Area of Effect");
-            }
+            //Turret tur = this.selected.Selected.GetComponent<Turret>();
+            //if ((tur.SplashTier < this.splashUpgrades.Length - 1) && (this.resources.currentGold < this.splashUpgrades[tur.SplashTier + 1].cost))
+            //{
+            //    Debug.Log("Not enough Gold for Upgrade");
+            //    return;
+            //}
+            //
+            //if (tur.SplashTier < this.splashUpgrades.Length - 1)
+            //{
+            //    tur.SplashTier += 1;
+            //    tur.splashArea = this.splashUpgrades[tur.SplashTier].splash;
+            //    this.resources.currentGold -= this.splashUpgrades[tur.SplashTier].cost;
+            //    this.gameObject.GetComponent<UI>().SetGold();
+            //}
+            //else
+            //{
+            //    Debug.Log("Turret Upgraded to max Area of Effect");
+            //}
         }
     }
 }

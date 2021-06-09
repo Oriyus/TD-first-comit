@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 3231832185795015510}
   - component: {fileID: 1312948738545860535}
   - component: {fileID: 3137205581897125284}
+  - component: {fileID: 2753879955802137384}
+  - component: {fileID: 835764220146133036}
+  - component: {fileID: 6563642918516877008}
   m_Layer: 0
-  m_Name: Barrel_1
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +99,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573e1ee6b48b8bd47ab90b6a87d9ef06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splash: {fileID: 8950806507185320664, guid: 4341ccf16f319534cb72283808f44a7a, type: 3}
+  barrelTip: {fileID: 6874457692176951852}
+  bullet: {fileID: 7329533749184775634, guid: 979117a174c75564cb69dcbe2c1ce152, type: 3}
+  bulletSpeed: 3
+  splashArea: 0
+  bulletDmg: 1
+  activeBarrels: 1
+--- !u!60 &2753879955802137384
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159436992468573153}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.5033581, y: 4.9696493}
+      - {x: -2.5037434, y: -5.0006332}
+      - {x: -0.48720855, y: -0.45920628}
+      - {x: -0.49944657, y: 0.45920628}
+--- !u!114 &835764220146133036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159436992468573153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2562b62b5a00a48b23f5d11f3ac768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 68664ff417837604490212d6125103b0, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3137205581897125284}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6563642918516877008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159436992468573153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2562b62b5a00a48b23f5d11f3ac768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 9a3c83c4abcd8604895eb1906a27afb7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3137205581897125284}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9085189798296701442
 GameObject:
   m_ObjectHideFlags: 0

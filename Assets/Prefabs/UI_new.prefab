@@ -956,6 +956,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d3926a5be828074a87b967f6e977469, type: 2}
   - {fileID: 11400000, guid: 844f5eb9a675d4045943c6f8ada23122, type: 2}
   - {fileID: 11400000, guid: dc8107977c60e544999a573e4d85478b, type: 2}
+  FireRateUpgrade: {fileID: 11400000, guid: 68664ff417837604490212d6125103b0, type: 2}
+  SplashUpgrade: {fileID: 11400000, guid: 9a3c83c4abcd8604895eb1906a27afb7, type: 2}
 --- !u!114 &305716485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,10 +1089,10 @@ MonoBehaviour:
       - m_Target: {fileID: 2329433645955249784}
         m_TargetAssemblyTypeName: TD.UI, Assembly-CSharp
         m_MethodName: AddParts
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1981,7 +1983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchoredPosition: {x: 300.00006, y: 0}
   m_SizeDelta: {x: 300, y: 500}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8859288242400080729
@@ -2076,7 +2078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.12317027}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7381006854160063726
@@ -2703,8 +2705,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4643073685061378750}
   m_HandleRect: {fileID: 7322934214173436898}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.40540525
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2820,7 +2822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -165, y: -0}
+  m_AnchoredPosition: {x: -165, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5575897130183659008
@@ -3198,6 +3200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8584012319473038443}
     m_Modifications:
+    - target: {fileID: 1824245275187830544, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
+      propertyPath: m_text
+      value: Upgrade Rate of Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 3284590838517328800, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
       propertyPath: m_Name
       value: Button Upgrade
@@ -3285,6 +3291,22 @@ PrefabInstance:
     - target: {fileID: 3483219031571513909, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222205445716468506, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7487329941752197369}
+    - target: {fileID: 7222205445716468506, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUpgradeFireRate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222205445716468506, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TD.MerchantMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7222205445716468506, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 676644fd5193b984d933eea5a4ea5ca3, type: 3}
